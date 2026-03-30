@@ -17,7 +17,7 @@ export default function HomePage() {
       <div className="relative z-10 w-full max-w-5xl mx-auto">
         <div className="text-center mb-6 sm:mb-8">
           <div className="flex justify-center mb-4 sm:mb-6">
-            <Image src={logoUrl} alt="Gunes" width={340} height={110} className="h-36 sm:h-44 w-auto object-contain" />
+            <Image src={logoUrl} alt="Gunes" width={680} height={220} className="h-56 sm:h-72 w-auto object-contain" />
           </div>
           <p className="text-[#faf8f5]/80 text-sm sm:text-base leading-relaxed max-w-md mx-auto mb-6">
             {aboutUs.short}
@@ -74,7 +74,7 @@ export default function HomePage() {
         </SectionReveal>
 
         <SectionReveal>
-        <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[#d4af37]/10">
+        <div className="mt-16 sm:mt-20 pt-8 sm:pt-10 border-t border-[#d4af37]/10">
           <div className="flex items-center justify-center gap-2 mb-6">
             <span className="w-8 h-px bg-[#d4af37]/30" />
             <p className="text-[11px] sm:text-[12px] text-[#d4af37] tracking-[0.25em] uppercase">Our Sister Branches</p>
