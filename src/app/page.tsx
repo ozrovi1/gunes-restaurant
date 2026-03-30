@@ -1,0 +1,135 @@
+import Link from "next/link";
+import Image from "next/image";
+import { branches } from "@/data/branches";
+import { logoUrl, aboutUs, turquazLanding } from "@/data/site";
+import { LocationCard } from "@/components/LocationCard";
+import { SisterBranchCard } from "@/components/SisterBranchCard";
+import { SectionReveal } from "@/components/SectionReveal";
+
+export default function HomePage() {
+  return (
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 py-10 sm:py-12 overflow-hidden bg-[#081408]">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-cover bg-center blur-[4px]" style={{ backgroundImage: "url('/landing-bg.png')" }} />
+        <div className="heroOverlay" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-5xl mx-auto">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="flex justify-center mb-4 sm:mb-6">
+            <Image src={logoUrl} alt="Gunes" width={340} height={110} className="h-36 sm:h-44 w-auto object-contain" />
+          </div>
+          <p className="text-[#faf8f5]/80 text-sm sm:text-base leading-relaxed max-w-md mx-auto mb-6">
+            {aboutUs.short}
+          </p>
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <span className="w-6 h-px bg-[#d4af37]/50" />
+            <h1 className="text-lg sm:text-xl font-medium text-[#faf8f5]">Welcome</h1>
+            <span className="w-6 h-px bg-[#d4af37]/50" />
+          </div>
+          <p className="text-[#d4af37]/90 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-medium">Please Select Your Destination</p>
+        </div>
+
+        <SectionReveal>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+          {branches.map((branch, i) => (
+            <LocationCard
+              key={branch.slug}
+              branch={branch}
+              badge={i % 2 === 0 ? "open" : "closes"}
+            />
+          ))}
+        </div>
+        </SectionReveal>
+
+        <SectionReveal>
+        <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[#d4af37]/10 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <span className="w-8 h-px bg-[#d4af37]/30" />
+            <p className="text-[11px] sm:text-[12px] text-[#d4af37] tracking-[0.25em] uppercase">Contact</p>
+            <span className="w-8 h-px bg-[#d4af37]/30" />
+          </div>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[#faf8f5]/80 text-xs sm:text-sm">
+            {branches.map((branch) => (
+              <a key={branch.slug} href={`tel:${branch.phone.replace(/\s/g, "")}`} className="hover:text-[#d4af37] transition-colors">
+                {branch.name}: {branch.phone}
+              </a>
+            ))}
+          </div>
+          <a href="mailto:info@gunes.co.uk" className="block mt-3 text-[#faf8f5]/80 text-xs sm:text-sm hover:text-[#d4af37] transition-colors">
+            info@gunes.co.uk
+          </a>
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
+            <Link href="/locations" className="text-[11px] sm:text-[12px] text-[#d4af37] font-medium tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors">
+              Locations
+            </Link>
+            <Link href="/menu" className="text-[11px] sm:text-[12px] text-[#d4af37] font-medium tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors">
+              View Menu
+            </Link>
+            <Link href="/reservations" className="text-[11px] sm:text-[12px] text-[#d4af37] font-semibold tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors">
+              Reserve a Table
+            </Link>
+          </div>
+        </div>
+        </SectionReveal>
+
+        <SectionReveal>
+        <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[#d4af37]/10">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <span className="w-8 h-px bg-[#d4af37]/30" />
+            <p className="text-[11px] sm:text-[12px] text-[#d4af37] tracking-[0.25em] uppercase">Our Sister Branches</p>
+            <span className="w-8 h-px bg-[#d4af37]/30" />
+          </div>
+
+          {/* Turquaz landing page - embedded */}
+          <div className="relative rounded-2xl overflow-hidden border border-[#d4af37]/20 bg-[#0a1f0a] transition-all duration-300 hover:border-[#d4af37]/40">
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-cover bg-center blur-[4px]" style={{ backgroundImage: `url('${turquazLanding.heroBg}')` }} />
+              <div className="absolute inset-0 bg-[#0a1f0a]/70" />
+            </div>
+            <div className="relative z-10 px-6 py-8 sm:py-10">
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="flex justify-center mb-6">
+                  <Image src={turquazLanding.logoUrl} alt={turquazLanding.name} width={200} height={67} className="h-12 sm:h-14 md:h-16 w-auto object-contain transition-transform duration-300 hover:scale-105" />
+                </div>
+                <p className="text-[#faf8f5] text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium max-w-md mx-auto mb-6 [text-shadow:0_1px_4px_rgba(0,0,0,0.7)]">
+                  {turquazLanding.tagline}
+                </p>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <span className="w-6 h-px bg-[#d4a017]/50" />
+                  <h2 className="text-lg sm:text-xl font-medium text-[#faf8f5] [text-shadow:0_1px_4px_rgba(0,0,0,0.7)]">Welcome</h2>
+                  <span className="w-6 h-px bg-[#d4a017]/50" />
+                </div>
+                <p className="text-[#d4af37] text-[11px] sm:text-xs tracking-[0.25em] uppercase font-medium [text-shadow:0_1px_4px_rgba(0,0,0,0.8)]">Please Select Your Destination</p>
+              </div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-6xl mx-auto">
+                {turquazLanding.branches.map((branch, i) => (
+                  <SisterBranchCard key={branch.slug} branch={branch} badge={i % 2 === 0 ? "open" : "closes"} />
+                ))}
+              </div>
+              <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-[#d4a017]/10 text-center">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <span className="w-8 h-px bg-[#d4a017]/30" />
+                  <p className="text-[11px] sm:text-[12px] text-[#faf8f5] tracking-[0.25em] uppercase [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">Contact</p>
+                  <span className="w-8 h-px bg-[#d4a017]/30" />
+                </div>
+                <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[#faf8f5] text-xs sm:text-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
+                  {turquazLanding.branches.map((branch) => (
+                    <span key={branch.slug} className="transition-colors duration-200 hover:text-[#d4a017] cursor-default">{branch.name}: {branch.phone}</span>
+                  ))}
+                </div>
+                <p className="mt-2 text-[#faf8f5] text-xs sm:text-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] transition-colors duration-200 hover:text-[#d4a017] cursor-default">info@turquaz.co.uk</p>
+                <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
+                  <span className="text-[11px] sm:text-[12px] text-[#faf8f5] font-medium tracking-[0.15em] uppercase transition-colors duration-200 hover:text-[#d4a017] cursor-default">Locations</span>
+                  <span className="text-[11px] sm:text-[12px] text-[#faf8f5] font-medium tracking-[0.15em] uppercase transition-colors duration-200 hover:text-[#d4a017] cursor-default">View Menu</span>
+                  <span className="text-[11px] sm:text-[12px] text-[#faf8f5] font-semibold tracking-[0.15em] uppercase transition-colors duration-200 hover:text-[#d4a017] cursor-default">Reserve a Table</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </SectionReveal>
+      </div>
+    </section>
+  );
+}
