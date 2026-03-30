@@ -114,16 +114,11 @@ export default function HomePage() {
                   <span className="w-8 h-px bg-[#d4a017]/30" />
                 </div>
                 <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[#faf8f5] text-xs sm:text-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
-                  {turquazLanding.branches.map((branch) => (
+                  {turquazLanding.branches.filter((b) => !b.comingSoon).map((branch) => (
                     <span key={branch.slug} className="transition-colors duration-200 hover:text-[#d4a017] cursor-default">{branch.name}: {branch.phone}</span>
                   ))}
                 </div>
                 <p className="mt-2 text-[#faf8f5] text-xs sm:text-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] transition-colors duration-200 hover:text-[#d4a017] cursor-default">info@turquaz.co.uk</p>
-                <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
-                  <span className="text-[11px] sm:text-[12px] text-[#faf8f5] font-medium tracking-[0.15em] uppercase transition-colors duration-200 hover:text-[#d4a017] cursor-default">Locations</span>
-                  <span className="text-[11px] sm:text-[12px] text-[#faf8f5] font-medium tracking-[0.15em] uppercase transition-colors duration-200 hover:text-[#d4a017] cursor-default">View Menu</span>
-                  <span className="text-[11px] sm:text-[12px] text-[#faf8f5] font-semibold tracking-[0.15em] uppercase transition-colors duration-200 hover:text-[#d4a017] cursor-default">Reserve a Table</span>
-                </div>
               </div>
             </div>
           </div>

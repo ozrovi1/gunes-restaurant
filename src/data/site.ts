@@ -22,9 +22,9 @@ export const turquazLanding = {
   tagline: "Authentic Turkish and Mediterranean cuisine at four locations across the UK.",
   heroBg: "/sister/landing-bg.png",
   branches: [
-    { slug: "aldershot", name: "Aldershot", area: "Hampshire", address: "10 Westgate, Aldershot, Hampshire GU11 1WG", phone: "01252 364141", imageUrl: "/sister/aldershot-exterior.png" },
-    { slug: "london", name: "London", area: "Catford, South East London", address: "163 Bromley Road, Catford, London SE6 2NZ", phone: "020 8697 4545", imageUrl: "/sister/DSC09860.JPG" },
-    { slug: "feltham", name: "Feltham", area: "West London", address: "High Street, Feltham TW13 4XX", phone: "020 8890 0000", imageUrl: "/sister/feltham-exterior.png" },
+    { slug: "aldershot", name: "Aldershot", area: "Hampshire", address: "10 Westgate, Aldershot, Hampshire GU11 1WG", phone: "01252 364141", imageUrl: "/sister/aldershot-exterior.png", url: "https://www.turkuazaldershot.co.uk/" },
+    { slug: "london", name: "London", area: "Catford, South East London", address: "163 Bromley Road, Catford, London SE6 2NZ", phone: "020 8697 4545", imageUrl: "/sister/DSC09860.JPG", comingSoon: true },
+    { slug: "feltham", name: "Feltham", area: "West London", address: "Unit F, Browells Lane, Leisure West, Feltham TW13 7LX", phone: "020 3196 5330", imageUrl: "/sister/feltham-exterior.png", url: "https://www.turkuazfeltham.co.uk/" },
     { slug: "crawley", name: "Crawley", area: "West Sussex", address: "45-47A High Street, Crawley RH10 1BQ", phone: "07474 030076", imageUrl: "/sister/crawley-exterior.png" },
   ],
 };
