@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Branch } from "@/data/branches";
 import { getOpenStatus } from "@/utils/openStatus";
 
@@ -15,14 +15,32 @@ interface LocationCardProps {
 
 export function LocationCard({ branch }: LocationCardProps) {
   const [status, setStatus] = useState(() => getOpenStatus(branch));
+  const [orderOpen, setOrderOpen] = useState(false);
+  const orderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Re-check every minute
     const interval = setInterval(() => setStatus(getOpenStatus(branch)), 60_000);
     return () => clearInterval(interval);
   }, [branch]);
 
+  useEffect(() => {
+    if (!orderOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (orderRef.current && !orderRef.current.contains(e.target as Node)) {
+        setOrderOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [orderOpen]);
+
   const badgeText = status.isOpen ? status.detail : status.label;
+
+  const orderPlatforms = [
+    branch.uberEatsUrl ? { label: "Uber Eats", url: branch.uberEatsUrl } : null,
+    branch.deliverooUrl ? { label: "Deliveroo", url: branch.deliverooUrl } : null,
+    branch.justEatUrl ? { label: "Just Eat", url: branch.justEatUrl } : null,
+  ].filter(Boolean) as { label: string; url: string }[];
 
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-[#d4af37]/25 bg-[#0d1f0d]/60 shadow-lg shadow-black/20 transition-all duration-300 hover:scale-[1.02] hover:border-[#d4af37]/50 hover:shadow-[0_0_28px_rgba(212,175,55,0.15)] h-full">
@@ -97,6 +115,35 @@ export function LocationCard({ branch }: LocationCardProps) {
               >
                 View Menu
               </Link>
+            )}
+            {orderPlatforms.length > 0 && (
+              <div ref={orderRef} className="relative">
+                <button
+                  onClick={() => setOrderOpen((v) => !v)}
+                  className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-[#d4af37] tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
+                  aria-label={`Order online from ${branch.name}`}
+                >
+                  Order Online
+                  <svg className={`w-3 h-3 transition-transform duration-200 ${orderOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {orderOpen && (
+                  <div className="absolute bottom-full left-0 mb-2 min-w-[140px] rounded-lg border border-[#d4af37]/30 bg-[#0d1f0d]/95 backdrop-blur-sm shadow-xl shadow-black/30 py-1.5 z-50">
+                    {orderPlatforms.map((p) => (
+                      <a
+                        key={p.label}
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block px-3 py-1.5 text-[11px] text-[#faf8f5] hover:bg-[#d4af37]/15 hover:text-[#e8c547] transition-colors"
+                      >
+                        {p.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </div>
