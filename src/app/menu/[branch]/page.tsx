@@ -107,6 +107,15 @@ export default async function BranchMenuPage({
                 See PDF →
               </Link>
             )}
+            {branchData.fullMenuUrl && (
+              <Link
+                href={branchData.fullMenuUrl}
+                target="_blank"
+                className="text-[11px] sm:text-[12px] text-[#d4af37] font-semibold tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
+              >
+                Full Menu →
+              </Link>
+            )}
           </div>
         </SectionReveal>
       </section>
