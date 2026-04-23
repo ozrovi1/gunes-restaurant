@@ -207,7 +207,7 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
           <h2 className="text-center text-2xl sm:text-3xl font-medium mb-12">Delicious Selections</h2>
           <div className="grid sm:grid-cols-3 gap-8">
             {menuCategories.map((cat) => (
-              <Link key={cat.id} href={`/menu/${branch.slug}`} className="group block flex flex-col items-center">
+              <Link key={cat.id} href={`/menu/${branch.slug}?category=${cat.id}`} className="group block flex flex-col items-center">
                 <OrnamentalFrame shape="circle" className="mb-6">
                   <div className="relative w-48 h-48 sm:w-56 sm:h-56 overflow-hidden rounded-full shadow-xl shadow-black/30">
                     <Image src={cat.imageUrl} alt={cat.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, 20vw" />
