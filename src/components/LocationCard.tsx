@@ -105,17 +105,13 @@ export function LocationCard({ branch }: LocationCardProps) {
               Reserve a Table
               <span className="card-arrow" aria-hidden>→</span>
             </Link>
-            {branch.menuUrl && (
-              <Link
-                href={branch.menuUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex text-[11px] sm:text-xs font-medium text-[#7a9e7a]/90 tracking-[0.1em] uppercase hover:text-[#d4af37] transition-colors"
-                aria-label={`View menu at ${branch.name}`}
-              >
-                View Menu
-              </Link>
-            )}
+            <Link
+              href={`/menu/${branch.slug}`}
+              className="inline-flex text-[11px] sm:text-xs font-medium text-[#7a9e7a]/90 tracking-[0.1em] uppercase hover:text-[#d4af37] transition-colors"
+              aria-label={`View menu at ${branch.name}`}
+            >
+              View Menu
+            </Link>
             {orderPlatforms.length > 0 && (
               <div ref={orderRef} className="relative">
                 <button

@@ -23,7 +23,7 @@ function buildReserveHref(branch: string | null): string {
 }
 
 function buildMenuHref(branch: string | null): string {
-  return branch ? `/menu?branch=${branch}` : "/menu";
+  return branch ? `/menu/${branch}` : "/menu";
 }
 
 export function StickyHeader() {

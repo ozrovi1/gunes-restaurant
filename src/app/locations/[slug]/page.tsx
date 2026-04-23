@@ -77,11 +77,9 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
             <Link href={`/reservations?branch=${branch.slug}`} className="btn-primary px-8 py-3.5 rounded-lg bg-[#d4af37] text-[#0a0a0a] font-semibold text-[12px] tracking-[0.2em] uppercase hover:bg-[#e8c547]">
               Reserve a Table
             </Link>
-            {branch.menuUrl && (
-              <Link href={branch.menuUrl} className="btn-secondary px-8 py-3.5 rounded-lg border-2 border-[#d4af37]/40 text-[#faf8f5] font-medium text-[12px] tracking-[0.2em] uppercase hover:border-[#d4af37] hover:text-[#d4af37]">
-                View Menu
-              </Link>
-            )}
+            <Link href={`/menu/${branch.slug}`} className="btn-secondary px-8 py-3.5 rounded-lg border-2 border-[#d4af37]/40 text-[#faf8f5] font-medium text-[12px] tracking-[0.2em] uppercase hover:border-[#d4af37] hover:text-[#d4af37]">
+              View Menu
+            </Link>
             {branch.uberEatsUrl && (
               <a href={branch.uberEatsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg border-2 border-[#22c55e]/40 text-[#22c55e] font-medium text-[12px] tracking-[0.2em] uppercase hover:border-[#22c55e] hover:bg-[#22c55e]/10 transition-colors">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2v-6h2v6zm1-8H8V7h8v2z"/></svg>
@@ -209,7 +207,7 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
           <h2 className="text-center text-2xl sm:text-3xl font-medium mb-12">Delicious Selections</h2>
           <div className="grid sm:grid-cols-3 gap-8">
             {menuCategories.map((cat) => (
-              <Link key={cat.id} href={branch.menuUrl || "/menu"} className="group block flex flex-col items-center">
+              <Link key={cat.id} href={`/menu/${branch.slug}`} className="group block flex flex-col items-center">
                 <OrnamentalFrame shape="circle" className="mb-6">
                   <div className="relative w-48 h-48 sm:w-56 sm:h-56 overflow-hidden rounded-full shadow-xl shadow-black/30">
                     <Image src={cat.imageUrl} alt={cat.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, 20vw" />
