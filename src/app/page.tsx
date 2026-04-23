@@ -6,8 +6,15 @@ import { LocationCard } from "@/components/LocationCard";
 import { SectionReveal } from "@/components/SectionReveal";
 
 const TURQUAZ_WEBSITE_URL = "https://www.turkuazfeltham.co.uk/";
+const TURQUAZ_EMBED_URL = `${TURQUAZ_WEBSITE_URL}?embed=1`;
 
-export default function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ embed?: string }>;
+}) {
+  const params = await searchParams;
+  const isEmbed = params.embed === "1";
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 py-10 sm:py-12 overflow-hidden bg-[#081408]">
       <div className="absolute inset-0">
@@ -74,39 +81,44 @@ export default function HomePage() {
         </div>
         </SectionReveal>
 
-        <SectionReveal>
-        <div className="mt-16 sm:mt-20 pt-8 sm:pt-10 border-t border-[#d4af37]/10">
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <span className="w-8 h-px bg-[#d4af37]/30" />
-            <p className="text-[11px] sm:text-[12px] text-[#d4af37] tracking-[0.25em] uppercase">Our Sister Branches</p>
-            <span className="w-8 h-px bg-[#d4af37]/30" />
-          </div>
-
-          {/* Turquaz - live full-page preview (iframe, non-interactive) */}
-          <div className="relative rounded-2xl overflow-hidden border border-[#d4af37]/25 bg-[#0a1f0a] shadow-xl shadow-black/30">
-            <iframe
-              src={TURQUAZ_WEBSITE_URL}
-              title={`${turquazLanding.name} — live homepage preview`}
-              loading="lazy"
-              scrolling="no"
-              className="block w-full h-[1500px] sm:h-[1400px] border-0 pointer-events-none"
-            />
-            <a
-              href={TURQUAZ_WEBSITE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit ${turquazLanding.name} website`}
-              className="group absolute inset-0 z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] focus-visible:ring-inset"
-            >
-              <span className="absolute top-4 right-4 sm:top-5 sm:right-5 inline-flex items-center gap-2 rounded-lg bg-[#0a1a0a]/85 backdrop-blur-sm border border-[#d4af37]/40 text-[#d4af37] px-4 py-2 font-semibold text-[10px] sm:text-[11px] tracking-[0.2em] uppercase shadow-lg shadow-black/40 transition-all duration-200 group-hover:bg-[#d4af37] group-hover:text-[#0a0a0a]">
-                Visit {turquazLanding.name} Website
-                <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-              </span>
-            </a>
-          </div>
-        </div>
-        </SectionReveal>
       </div>
+
+      {!isEmbed && (
+        <div className="relative z-10 w-full max-w-6xl mx-auto mt-16 sm:mt-20">
+          <SectionReveal>
+          <div className="pt-8 sm:pt-10 border-t border-[#d4af37]/10">
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <span className="w-8 h-px bg-[#d4af37]/30" />
+              <p className="text-[11px] sm:text-[12px] text-[#d4af37] tracking-[0.25em] uppercase">Our Sister Branches</p>
+              <span className="w-8 h-px bg-[#d4af37]/30" />
+            </div>
+
+            {/* Turquaz - live full-page preview (iframe, non-interactive) */}
+            <div className="relative rounded-2xl overflow-hidden border border-[#d4af37]/25 bg-[#0a1f0a] shadow-xl shadow-black/30">
+              <iframe
+                src={TURQUAZ_EMBED_URL}
+                title={`${turquazLanding.name} — live homepage preview`}
+                loading="lazy"
+                scrolling="no"
+                className="block w-full h-[2200px] sm:h-[1800px] lg:h-[1200px] border-0 pointer-events-none"
+              />
+              <a
+                href={TURQUAZ_WEBSITE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${turquazLanding.name} website`}
+                className="group absolute inset-0 z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] focus-visible:ring-inset"
+              >
+                <span className="absolute top-4 right-4 sm:top-5 sm:right-5 inline-flex items-center gap-2 rounded-lg bg-[#0a1a0a]/85 backdrop-blur-sm border border-[#d4af37]/40 text-[#d4af37] px-4 py-2 font-semibold text-[10px] sm:text-[11px] tracking-[0.2em] uppercase shadow-lg shadow-black/40 transition-all duration-200 group-hover:bg-[#d4af37] group-hover:text-[#0a0a0a]">
+                  Visit {turquazLanding.name} Website
+                  <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+                </span>
+              </a>
+            </div>
+          </div>
+          </SectionReveal>
+        </div>
+      )}
     </section>
   );
 }
