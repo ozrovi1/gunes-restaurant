@@ -107,13 +107,13 @@ export default async function BranchMenuPage({
                 See PDF →
               </Link>
             )}
-            {branchData.fullMenuUrl && (
+            {branchData.drinksMenuUrl && (
               <Link
-                href={branchData.fullMenuUrl}
+                href={branchData.drinksMenuUrl}
                 target="_blank"
                 className="text-[11px] sm:text-[12px] text-[#d4af37] font-semibold tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
               >
-                Full Menu →
+                Drinks Menu →
               </Link>
             )}
           </div>
