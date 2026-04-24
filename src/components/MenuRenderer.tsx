@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import type { BranchMenu, Category, MenuItem, MenuSection } from "@/data/menus/types";
 import { ALLERGEN_LABELS, CATEGORY_LABELS } from "@/data/menus/types";
@@ -102,11 +102,23 @@ export function MenuRenderer({ menu, brandName = "Güneş" }: MenuRendererProps)
       ? requestedCategory
       : categoriesInOrder[0];
   const [activeCategory, setActiveCategory] = useState<Category>(initialCategory);
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (requestedCategory && categoriesInOrder.includes(requestedCategory)) {
+      setActiveCategory(requestedCategory);
+      const t = setTimeout(() => {
+        rootRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+      return () => clearTimeout(t);
+    }
+  }, [requestedCategory, categoriesInOrder]);
+
   const activeSections = menu.sections.filter((s) => s.category === activeCategory);
   const branchDisplay = menu.branch.charAt(0).toUpperCase() + menu.branch.slice(1);
 
   return (
-    <div className="w-full">
+    <div ref={rootRef} className="w-full scroll-mt-20">
       <nav className="mb-10 sm:mb-12">
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
           {categoriesInOrder.map((cat) => {

@@ -99,22 +99,31 @@ export default async function BranchMenuPage({
               ← Back to {branchData.name}
             </Link>
             {branchData.menuUrl && (
-              <Link
+              <a
                 href={branchData.menuUrl}
-                target="_blank"
+                download
                 className="text-[11px] sm:text-[12px] text-[#d4af37] font-semibold tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
               >
-                See PDF →
-              </Link>
+                Download PDF ↓
+              </a>
             )}
             {branchData.drinksMenuUrl && (
-              <Link
+              <a
                 href={branchData.drinksMenuUrl}
-                target="_blank"
+                download
                 className="text-[11px] sm:text-[12px] text-[#d4af37] font-semibold tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
               >
-                Drinks Menu →
-              </Link>
+                Drinks ↓
+              </a>
+            )}
+            {branchData.dessertMenuUrl && (
+              <a
+                href={branchData.dessertMenuUrl}
+                download
+                className="text-[11px] sm:text-[12px] text-[#d4af37] font-semibold tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
+              >
+                Desserts ↓
+              </a>
             )}
           </div>
         </SectionReveal>
