@@ -3,7 +3,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getBranchBySlug, branches } from "@/data/branches";
 import { logoUrl, aboutUs } from "@/data/site";
-import { BookingForm } from "@/components/BookingForm";
 import { menuCategories } from "@/data/menu";
 import { SectionReveal } from "@/components/SectionReveal";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
@@ -108,10 +107,38 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
                 <span className="text-[#d4af37] text-sm">&#10022;</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-medium">Reserve Your Table</h2>
-              <p className="text-[#faf8f5]/80 text-sm mt-2">Booking: {branch.phone} or use the form below</p>
+              <p className="text-[#faf8f5]/80 text-sm mt-2">
+                Book online through Dojo, or call us on{" "}
+                <a href={`tel:${branch.phone.replace(/\s/g, "")}`} className="text-[#d4af37] hover:text-[#e8c547] transition-colors">
+                  {branch.phone}
+                </a>
+              </p>
             </div>
-            <div className="rounded-2xl overflow-hidden border-2 border-[#d4af37]/20 bg-[#0a1a0a]/80 p-6 sm:p-10">
-              <BookingForm branchSlug={branch.slug} branchName={branch.name} />
+            <div className="rounded-2xl overflow-hidden border-2 border-[#d4af37]/20 bg-[#0a1a0a]/80 p-10 sm:p-14 flex flex-col items-center gap-6">
+              {branch.dojoBookingUrl ? (
+                <>
+                  <p className="text-[#faf8f5]/80 text-sm sm:text-base text-center max-w-md">
+                    Reserve instantly on Dojo — see live availability and get an immediate confirmation.
+                  </p>
+                  <a
+                    href={branch.dojoBookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary inline-flex items-center gap-2 px-10 py-4 rounded-lg bg-[#d4af37] text-[#0a0a0a] font-semibold text-[13px] tracking-[0.2em] uppercase hover:bg-[#e8c547] transition-colors"
+                  >
+                    Reserve a Table on Dojo
+                    <span aria-hidden>→</span>
+                  </a>
+                </>
+              ) : (
+                <p className="text-[#faf8f5]/70 text-sm text-center">
+                  Please call us on{" "}
+                  <a href={`tel:${branch.phone.replace(/\s/g, "")}`} className="text-[#d4af37] hover:text-[#e8c547] transition-colors">
+                    {branch.phone}
+                  </a>{" "}
+                  to reserve a table.
+                </p>
+              )}
             </div>
           </OrnamentalFrame>
         </SectionReveal>
