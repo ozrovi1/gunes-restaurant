@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { logoUrl } from "@/data/site";
+import { getBranchBySlug } from "@/data/branches";
 
 const SCROLL_THRESHOLD = 80;
 
@@ -18,8 +19,14 @@ function useBranchFromPath(): string | null {
   return match ? match[1] : null;
 }
 
-function buildReserveHref(branch: string | null): string {
-  return branch ? `/reservations?branch=${branch}` : "/reservations";
+/** Returns Dojo URL when this branch uses one, else the internal reservations page. */
+function buildReserveHref(branch: string | null): { href: string; external: boolean } {
+  if (branch) {
+    const b = getBranchBySlug(branch);
+    if (b?.dojoBookingUrl) return { href: b.dojoBookingUrl, external: true };
+    return { href: `/reservations?branch=${branch}`, external: false };
+  }
+  return { href: "/reservations", external: false };
 }
 
 function buildMenuHref(branch: string | null): string {
@@ -64,7 +71,7 @@ export function StickyHeader() {
     };
   }, [menuOpen, closeMenu]);
 
-  const reserveHref = buildReserveHref(branch);
+  const reserve = buildReserveHref(branch);
   const menuHref = buildMenuHref(branch);
 
   return (
@@ -95,13 +102,25 @@ export function StickyHeader() {
           >
             View Menu
           </Link>
-          <Link
-            href={reserveHref}
-            className="btn-primary inline-flex items-center px-5 py-2.5 rounded-lg bg-[var(--cta-primary)] text-[#0a0a0a] text-xs font-semibold tracking-[0.2em] uppercase hover:bg-[var(--cta-primary-hover)]"
-            aria-label="Reserve a table"
-          >
-            Reserve a Table
-          </Link>
+          {reserve.external ? (
+            <a
+              href={reserve.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex items-center px-5 py-2.5 rounded-lg bg-[var(--cta-primary)] text-[#0a0a0a] text-xs font-semibold tracking-[0.2em] uppercase hover:bg-[var(--cta-primary-hover)]"
+              aria-label="Reserve a table"
+            >
+              Reserve a Table
+            </a>
+          ) : (
+            <Link
+              href={reserve.href}
+              className="btn-primary inline-flex items-center px-5 py-2.5 rounded-lg bg-[var(--cta-primary)] text-[#0a0a0a] text-xs font-semibold tracking-[0.2em] uppercase hover:bg-[var(--cta-primary-hover)]"
+              aria-label="Reserve a table"
+            >
+              Reserve a Table
+            </Link>
+          )}
         </nav>
 
         {/* Mobile hamburger */}
@@ -148,13 +167,25 @@ export function StickyHeader() {
           >
             Menu
           </Link>
-          <Link
-            href={reserveHref}
-            onClick={closeMenu}
-            className="text-sm font-semibold text-[#0a0a0a] tracking-[0.15em] uppercase py-2.5 px-3 rounded-lg bg-[#d4af37] hover:bg-[#e8c547] transition-colors text-center"
-          >
-            Reserve a Table
-          </Link>
+          {reserve.external ? (
+            <a
+              href={reserve.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="text-sm font-semibold text-[#0a0a0a] tracking-[0.15em] uppercase py-2.5 px-3 rounded-lg bg-[#d4af37] hover:bg-[#e8c547] transition-colors text-center"
+            >
+              Reserve a Table
+            </a>
+          ) : (
+            <Link
+              href={reserve.href}
+              onClick={closeMenu}
+              className="text-sm font-semibold text-[#0a0a0a] tracking-[0.15em] uppercase py-2.5 px-3 rounded-lg bg-[#d4af37] hover:bg-[#e8c547] transition-colors text-center"
+            >
+              Reserve a Table
+            </Link>
+          )}
         </nav>
       )}
     </header>

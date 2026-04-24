@@ -97,14 +97,27 @@ export function LocationCard({ branch }: LocationCardProps) {
           </p>
           {/* Primary CTA: Reserve a Table | Secondary: View Menu */}
           <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 pointer-events-auto">
-            <Link
-              href={`/reservations?branch=${branch.slug}`}
-              className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-[#d4af37] tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
-              aria-label={`Reserve a table at ${branch.name}`}
-            >
-              Reserve a Table
-              <span className="card-arrow" aria-hidden>→</span>
-            </Link>
+            {branch.dojoBookingUrl ? (
+              <a
+                href={branch.dojoBookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-[#d4af37] tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
+                aria-label={`Reserve a table at ${branch.name}`}
+              >
+                Reserve a Table
+                <span className="card-arrow" aria-hidden>→</span>
+              </a>
+            ) : (
+              <Link
+                href={`/reservations?branch=${branch.slug}`}
+                className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-[#d4af37] tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors"
+                aria-label={`Reserve a table at ${branch.name}`}
+              >
+                Reserve a Table
+                <span className="card-arrow" aria-hidden>→</span>
+              </Link>
+            )}
             <Link
               href={`/menu/${branch.slug}`}
               className="inline-flex text-[11px] sm:text-xs font-medium text-[#7a9e7a]/90 tracking-[0.1em] uppercase hover:text-[#d4af37] transition-colors"

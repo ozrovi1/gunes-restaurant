@@ -74,13 +74,14 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
             <p><a href={`tel:${branch.phone.replace(/\s/g, "")}`} className="hover:text-[#d4af37] transition-colors">Booking: {branch.phone}</a></p>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
-            <Link href={`/reservations?branch=${branch.slug}`} className="btn-primary px-8 py-3.5 rounded-lg bg-[#d4af37] text-[#0a0a0a] font-semibold text-[12px] tracking-[0.2em] uppercase hover:bg-[#e8c547]">
-              Reserve a Table
-            </Link>
-            {branch.dojoBookingUrl && (
-              <a href={branch.dojoBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary px-8 py-3.5 rounded-lg border-2 border-[#d4af37]/40 text-[#faf8f5] font-medium text-[12px] tracking-[0.2em] uppercase hover:border-[#d4af37] hover:text-[#d4af37]">
-                Book on Dojo
+            {branch.dojoBookingUrl ? (
+              <a href={branch.dojoBookingUrl} target="_blank" rel="noopener noreferrer" className="btn-primary px-8 py-3.5 rounded-lg bg-[#d4af37] text-[#0a0a0a] font-semibold text-[12px] tracking-[0.2em] uppercase hover:bg-[#e8c547]">
+                Reserve a Table
               </a>
+            ) : (
+              <Link href={`/reservations?branch=${branch.slug}`} className="btn-primary px-8 py-3.5 rounded-lg bg-[#d4af37] text-[#0a0a0a] font-semibold text-[12px] tracking-[0.2em] uppercase hover:bg-[#e8c547]">
+                Reserve a Table
+              </Link>
             )}
             <Link href={`/menu/${branch.slug}`} className="btn-secondary px-8 py-3.5 rounded-lg border-2 border-[#d4af37]/40 text-[#faf8f5] font-medium text-[12px] tracking-[0.2em] uppercase hover:border-[#d4af37] hover:text-[#d4af37]">
               View Menu
