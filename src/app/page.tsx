@@ -64,9 +64,6 @@ export default async function HomePage({
               </a>
             ))}
           </div>
-          <a href="mailto:info@gunes.co.uk" className="block mt-3 text-[#faf8f5]/80 text-xs sm:text-sm hover:text-[#d4af37] transition-colors">
-            info@gunes.co.uk
-          </a>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
             <Link href="/locations" className="text-[11px] sm:text-[12px] text-[#d4af37] font-medium tracking-[0.15em] uppercase hover:text-[#e8c547] transition-colors">
               Locations

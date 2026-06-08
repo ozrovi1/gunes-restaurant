@@ -94,16 +94,7 @@ export default async function LegalPage({
         </article>
 
         <div className="mt-12 pt-6 border-t border-[#d4af37]/15 text-xs text-[#7a9e7a]/80">
-          <p>
-            Questions? Email{" "}
-            <a
-              href="mailto:info@gunes.co.uk"
-              className="text-[#d4af37] hover:text-[#e8c547] transition-colors"
-            >
-              info@gunes.co.uk
-            </a>
-            .
-          </p>
+          <p>Questions? Call us at any of our branches.</p>
         </div>
       </div>
     </main>

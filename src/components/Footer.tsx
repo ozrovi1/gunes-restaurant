@@ -72,14 +72,6 @@ export function Footer() {
               Contact
             </h2>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="mailto:info@gunes.co.uk"
-                  className="hover:text-[#d4af37] transition-colors"
-                >
-                  info@gunes.co.uk
-                </a>
-              </li>
               {branches.map((branch) => (
                 <li key={branch.slug}>
                   <a

@@ -31,7 +31,6 @@ export interface Policy {
 
 const COMPANY_NAME = "Gunes Restaurant";
 const TRADING_ADDRESS = "204 Southbury Rd, Enfield EN1 1YQ, United Kingdom";
-const CONTACT_EMAIL = "info@gunes.co.uk";
 
 export const policies: Policy[] = [
   {
@@ -44,7 +43,7 @@ export const policies: Policy[] = [
       {
         heading: "1. Who we are",
         body: [
-          `${COMPANY_NAME} ("we", "us", "our") operates this website and our restaurants in the United Kingdom. Our trading address is ${TRADING_ADDRESS}. For any privacy-related question you can reach us at ${CONTACT_EMAIL}.`,
+          `${COMPANY_NAME} ("we", "us", "our") operates this website and our restaurants in the United Kingdom. Our trading address is ${TRADING_ADDRESS}. For any privacy-related question you can contact us by calling any of our branches.`,
           "We are the data controller for the personal data described in this policy. We comply with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.",
         ],
       },
@@ -102,7 +101,7 @@ export const policies: Policy[] = [
         heading: "7. Your rights",
         body: [
           "Under UK GDPR you have the right to: access your data, ask us to correct or delete it, object to or restrict processing, withdraw any consent you have given, and request that we transfer your data to another controller.",
-          `To exercise any of these rights, email us at ${CONTACT_EMAIL}. We will respond within one month.`,
+          `To exercise any of these rights, contact us by calling any of our branches. We will respond within one month.`,
           "If you are not satisfied with our response, you have the right to lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk.",
         ],
       },
@@ -179,7 +178,7 @@ export const policies: Policy[] = [
       },
       {
         heading: "9. Contact",
-        body: [`Questions about these terms? Email us at ${CONTACT_EMAIL}.`],
+        body: [`Questions about these terms? Call us at any of our branches.`],
       },
     ],
   },
@@ -261,7 +260,7 @@ export const policies: Policy[] = [
       {
         heading: "6. Contact",
         body: [
-          `For any refund question that is not handled by a delivery platform, email us at ${CONTACT_EMAIL} with your order or booking reference.`,
+          `For any refund question that is not handled by a delivery platform, call the branch that handled your order with your order or booking reference.`,
         ],
       },
     ],
@@ -339,7 +338,7 @@ export const policies: Policy[] = [
       {
         heading: "5. Contact",
         body: [
-          `If you cannot find the information you need, email us at ${CONTACT_EMAIL} or call the branch directly.`,
+          `If you cannot find the information you need, call the branch directly.`,
         ],
       },
     ],
@@ -376,7 +375,7 @@ export const policies: Policy[] = [
       {
         heading: "4. Telling us about a problem",
         body: [
-          `If you find something on this Site difficult to use, please email ${CONTACT_EMAIL} describing the page and the issue. We aim to respond within five working days.`,
+          `If you find something on this Site difficult to use, please call any of our branches describing the page and the issue. We aim to respond within five working days.`,
         ],
       },
     ],
