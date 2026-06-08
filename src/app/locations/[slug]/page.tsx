@@ -69,6 +69,9 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
           <div className="space-y-2 text-[#faf8f5]/90 text-sm sm:text-base">
             <p>{branch.address}</p>
             <p className="text-[#7a9e7a]">{branch.hours}</p>
+            {branch.email && (
+              <a href={`mailto:${branch.email}`} className="block hover:text-[#d4af37] transition-colors">{branch.email}</a>
+            )}
             <p><a href={`tel:${branch.phone.replace(/\s/g, "")}`} className="hover:text-[#d4af37] transition-colors">Booking: {branch.phone}</a></p>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
