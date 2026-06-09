@@ -87,6 +87,12 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
             <Link href={`/menu/${branch.slug}`} className="btn-secondary px-8 py-3.5 rounded-lg border-2 border-[#d4af37]/40 text-[#faf8f5] font-medium text-[12px] tracking-[0.2em] uppercase hover:border-[#d4af37] hover:text-[#d4af37]">
               View Menu
             </Link>
+            {branch.onlineOrderUrl && (
+              <Link href={branch.onlineOrderUrl} className="btn-primary inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-[#d4af37] text-[#0a0a0a] font-semibold text-[12px] tracking-[0.2em] uppercase hover:bg-[#e8c547]">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 11H6L5 9z" /></svg>
+                Order Online
+              </Link>
+            )}
             {branch.uberEatsUrl && (
               <a href={branch.uberEatsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg border-2 border-[#22c55e]/40 text-[#22c55e] font-medium text-[12px] tracking-[0.2em] uppercase hover:border-[#22c55e] hover:bg-[#22c55e]/10 transition-colors">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2v-6h2v6zm1-8H8V7h8v2z"/></svg>
@@ -94,6 +100,11 @@ export default async function BranchPage({ params }: { params: Promise<{ slug: s
               </a>
             )}
           </div>
+          {branch.onlineOrderUrl && (
+            <p className="mt-4 text-[11px] tracking-[0.25em] uppercase text-[#d4af37]/70">
+              &#9830; Online orders are collection only &#9830;
+            </p>
+          )}
         </SectionReveal>
       </section>
 
