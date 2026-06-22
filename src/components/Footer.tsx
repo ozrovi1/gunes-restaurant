@@ -111,6 +111,17 @@ export function Footer() {
           <p>
             Online orders are fulfilled via Uber Eats, Deliveroo and Just Eat.
           </p>
+          <p>
+            Website by{" "}
+            <a
+              href="https://www.webgallery.co.uk"
+              target="_blank"
+              rel="noopener"
+              className="text-[#d4af37]/90 hover:text-[#d4af37] underline-offset-2 hover:underline transition-colors"
+            >
+              Web Gallery
+            </a>
+          </p>
         </div>
       </div>
     </footer>
