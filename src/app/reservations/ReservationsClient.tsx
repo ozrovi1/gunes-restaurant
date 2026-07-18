@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { BookingForm } from "@/components/BookingForm";
 
 const branches = [
-  { slug: "enfield", name: "Enfield", area: "North London", phone: "+44 20 8886 1234" },
+  { slug: "enfield", name: "Enfield", area: "North London", phone: "020 3354 0718" },
   { slug: "walthamstow", name: "Walthamstow", area: "East London", phone: "+44 20 8520 4567" },
 ];
 
@@ -51,7 +51,7 @@ export function ReservationsClient() {
               </button>
             ))}
             <p className="text-center text-[#faf8f5]/30 text-xs mt-6">
-              Or call us directly to book: <a href="tel:+442088861234" className="text-[#d4af37]/70 hover:text-[#d4af37]">+44 20 8886 1234</a>
+              Or call us directly to book: <a href="tel:+442033540718" className="text-[#d4af37]/70 hover:text-[#d4af37]">020 3354 0718</a>
             </p>
           </div>
         ) : branch ? (
