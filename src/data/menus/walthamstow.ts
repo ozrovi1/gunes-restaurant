@@ -94,33 +94,6 @@ export const walthamstowMenu: BranchMenu = {
       ],
     },
     {
-      id: "french-toast-specials",
-      category: "breakfast",
-      name: "French Toast Specials",
-      items: [
-        {
-          name: "Biscoff French Toast",
-          description: "Cinnamon sugar-coated French toast crumpets with a melting Biscoff",
-          price: "13.9",
-        },
-        {
-          name: "I Love Chocolate",
-          description: "Pancakes with Nutella, Kinder Bueno, bananas and seasonal fruits",
-          price: "11.9",
-        },
-        {
-          name: "French Toast",
-          description: "French toast with clotted cream, Turkish fairy floss and seasonal fruits",
-          price: "12.9",
-        },
-        {
-          name: "The French",
-          description: "French toast with clotted cream, Turkish fairy floss, seasonal fruits, beef sausage and turkey bacon",
-          price: "13.9",
-        },
-      ],
-    },
-    {
       id: "breakfast-extras",
       category: "breakfast",
       name: "Breakfast Extras",
@@ -308,6 +281,15 @@ export const walthamstowMenu: BranchMenu = {
           price: "6.9",
           allergens: ["VG", "D", "C"],
         },
+        {
+          name: "Lamb Soup (Paça)",
+          price: "6.9",
+        },
+        {
+          name: "Lamb Soup with Yoghurt (Yoğurtlu Paça)",
+          price: "6.9",
+          allergens: ["D"],
+        },
       ],
     },
     {
@@ -320,6 +302,11 @@ export const walthamstowMenu: BranchMenu = {
           description: "Chopped tomato, red onion, peppers, parsley, lemon juice with pomegranate dressing",
           price: "7.5",
           allergens: ["V"],
+        },
+        {
+          name: "Shepherd's (Coban) Salad",
+          price: "8.5",
+          allergens: ["VG"],
         },
         {
           name: "Traditional Greek Salad",
@@ -335,8 +322,17 @@ export const walthamstowMenu: BranchMenu = {
         {
           name: "Fruity Goat Cheese Salad",
           description: "Beetroot, dry apricot, mix lettuce, cherry tomato, avocado & walnut",
-          price: "12.9",
+          price: "15.9",
           allergens: ["V", "N", "D"],
+        },
+        {
+          name: "Gunes Salad",
+          price: "14.5",
+        },
+        {
+          name: "Halloumi Avocado Salad",
+          price: "13.5",
+          allergens: ["V", "D"],
         },
       ],
     },
@@ -377,16 +373,6 @@ export const walthamstowMenu: BranchMenu = {
         {
           name: "Chicken Wings",
           description: "Marinated chicken wings cooked on charcoal grill",
-          price: "16.9",
-        },
-        {
-          name: "Baby Chicken",
-          description: "Marinated whole baby chicken cooked on charcoal grill, served with chips",
-          price: "16.9",
-        },
-        {
-          name: "Quils",
-          description: "Seasoned whole quils cooked on charcoal grill, served with chips",
           price: "16.9",
         },
         {
