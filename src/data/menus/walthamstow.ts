@@ -304,15 +304,16 @@ export const walthamstowMenu: BranchMenu = {
           allergens: ["V"],
         },
         {
-          name: "Shepherd's (Coban) Salad",
-          price: "8.5",
-          allergens: ["VG"],
-        },
-        {
           name: "Traditional Greek Salad",
           description: "Beef tomato, cucumber, bell peppers, fresh parsley, Greek feta cheese, olives, extra virgin olive oil & lemon",
           price: "10.5",
           allergens: ["V", "GF", "D"],
+        },
+        {
+          name: "Gunes Salad",
+          description: "Cos lettuce, cherry tomatoes, apple, walnut, feta cheese and apricot balsamic dressing",
+          price: "14.5",
+          allergens: ["V", "GF", "N"],
         },
         {
           name: "Chicken Caesar Salad with Avocado",
@@ -326,13 +327,14 @@ export const walthamstowMenu: BranchMenu = {
           allergens: ["V", "N", "D"],
         },
         {
-          name: "Gunes Salad",
-          price: "14.5",
+          name: "Shepherd's (Coban) Salad",
+          description: "Diced tomato, cucumber, onion, parsley with olive oil dressing",
+          price: "8.5",
         },
         {
           name: "Halloumi Avocado Salad",
+          description: "Grilled halloumi, avocado, cherry tomatoes, sweetcorn, mixed leaves, beetroot, olive oil, walnut and pomegranate juice dressing",
           price: "13.5",
-          allergens: ["V", "D"],
         },
       ],
     },
