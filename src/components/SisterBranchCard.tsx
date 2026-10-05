@@ -23,11 +23,11 @@ interface SisterBranchCardProps {
 }
 
 export function SisterBranchCard({ branch }: SisterBranchCardProps) {
-  const fakeBranch = { hours: branch.hours || "" } as Branch;
-  const [status, setStatus] = useState(() => getOpenStatus(fakeBranch));
+  const [status, setStatus] = useState(() => getOpenStatus({ hours: branch.hours || "" } as Branch));
 
   useEffect(() => {
-    const interval = setInterval(() => setStatus(getOpenStatus(fakeBranch)), 60_000);
+    const hoursOnly = { hours: branch.hours || "" } as Branch;
+    const interval = setInterval(() => setStatus(getOpenStatus(hoursOnly)), 60_000);
     return () => clearInterval(interval);
   }, [branch.hours]);
 

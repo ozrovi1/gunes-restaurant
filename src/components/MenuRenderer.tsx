@@ -104,14 +104,22 @@ export function MenuRenderer({ menu, brandName = "Güneş" }: MenuRendererProps)
   const [activeCategory, setActiveCategory] = useState<Category>(initialCategory);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  // When the ?category= param changes after mount, follow it. Adjusting state
+  // during render (not in an effect) avoids an extra render with stale content.
+  const [seenRequested, setSeenRequested] = useState(requestedCategory);
+  if (requestedCategory !== seenRequested) {
+    setSeenRequested(requestedCategory);
     if (requestedCategory && categoriesInOrder.includes(requestedCategory)) {
       setActiveCategory(requestedCategory);
-      const t = setTimeout(() => {
-        rootRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 50);
-      return () => clearTimeout(t);
     }
+  }
+
+  useEffect(() => {
+    if (!requestedCategory || !categoriesInOrder.includes(requestedCategory)) return;
+    const t = setTimeout(() => {
+      rootRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+    return () => clearTimeout(t);
   }, [requestedCategory, categoriesInOrder]);
 
   const activeSections = menu.sections.filter((s) => s.category === activeCategory);

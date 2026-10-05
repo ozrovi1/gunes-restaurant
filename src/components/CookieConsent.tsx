@@ -1,27 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 const STORAGE_KEY = "gunes.cookie-consent.v1";
 
 type Choice = "accepted" | "rejected";
 
-export function CookieConsent() {
-  const [visible, setVisible] = useState(false);
+function subscribe(onChange: () => void): () => void {
+  window.addEventListener("storage", onChange);
+  return () => window.removeEventListener("storage", onChange);
+}
 
-  useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored !== "accepted" && stored !== "rejected") {
-        setVisible(true);
-      }
-    } catch {
-      // Storage unavailable (e.g. private mode) — show the banner so the user
-      // can still make a choice this session.
-      setVisible(true);
-    }
-  }, []);
+/** True when a choice is already stored. Storage unavailable (private mode) counts as no choice. */
+function hasStoredChoice(): boolean {
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    return stored === "accepted" || stored === "rejected";
+  } catch {
+    return false;
+  }
+}
+
+/** On the server (and during hydration) pretend a choice exists so the banner never flashes. */
+const serverSnapshot = () => true;
+
+export function CookieConsent() {
+  const hasChoice = useSyncExternalStore(subscribe, hasStoredChoice, serverSnapshot);
+  const [dismissed, setDismissed] = useState(false);
+  const visible = !hasChoice && !dismissed;
 
   const persist = (choice: Choice) => {
     try {
@@ -29,7 +36,7 @@ export function CookieConsent() {
     } catch {
       // Ignore — choice will simply not persist across sessions.
     }
-    setVisible(false);
+    setDismissed(true);
   };
 
   if (!visible) return null;

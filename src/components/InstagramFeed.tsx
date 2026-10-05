@@ -18,7 +18,6 @@ interface InstagramFeedProps {
 
 export function InstagramFeed({
   branchName,
-  logoUrl,
   instagramHandle,
   postUrls = [],
   postThumbnails = [],
