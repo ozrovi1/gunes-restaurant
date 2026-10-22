@@ -4,16 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChristmasMenuCard } from "@/components/ChristmasMenuCard";
-import { christmasBranchSlugs, getChristmasMenu, isChristmasMenuActive } from "@/data/seasonal/christmas";
+import { getChristmasMenu, isChristmasMenuActive } from "@/data/seasonal/christmas";
 import { getBranchBySlug } from "@/data/branches";
 
 const SEEN_KEY = "gunes-christmas-popup-seen";
 const OPEN_DELAY_MS = 1200;
 const HEADING_ID = "christmas-popup-title";
 
-/** Only greet visitors on the home page and branch pages; never interrupt menus, booking or legal pages. */
-function branchSlugFor(pathname: string): string | null | undefined {
-  if (pathname === "/") return null;
+/** Only greet visitors on a single branch page; never interrupt the home page, menus, booking or legal pages. */
+function branchSlugFor(pathname: string): string | undefined {
   const m = pathname.match(/^\/locations\/([^/]+)\/?$/);
   if (m) return getChristmasMenu(m[1]) ? m[1] : undefined;
   return undefined;
@@ -46,11 +45,8 @@ export function ChristmasPopup() {
   const pathname = usePathname();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
-  const pathSlug = branchSlugFor(pathname);
-  const eligible = pathSlug !== undefined;
-  // On the home page the visitor picks a branch inside the popup.
-  const [chosen, setChosen] = useState<string>(christmasBranchSlugs[0]);
-  const slug = pathSlug ?? chosen;
+  const slug = branchSlugFor(pathname);
+  const eligible = slug !== undefined;
 
   useEffect(() => {
     if (!eligible || !isChristmasMenuActive() || alreadySeen()) return;
@@ -79,7 +75,7 @@ export function ChristmasPopup() {
 
   const close = useCallback(() => setOpen(false), []);
 
-  if (!eligible) return null;
+  if (!slug) return null;
 
   const menu = getChristmasMenu(slug);
   if (!menu) return null;
@@ -109,36 +105,6 @@ export function ChristmasPopup() {
             <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
         </button>
-
-        {pathSlug === null && (
-          <div className="mb-3 flex justify-center">
-            <div
-              role="tablist"
-              aria-label="Choose a branch"
-              className="inline-flex items-center p-1 rounded-full border border-[#d4af37]/40 bg-[#0d1f0d]/90"
-            >
-              {christmasBranchSlugs.map((s) => {
-                const active = s === slug;
-                return (
-                  <button
-                    key={s}
-                    type="button"
-                    role="tab"
-                    aria-selected={active}
-                    onClick={() => setChosen(s)}
-                    className={
-                      active
-                        ? "px-5 py-2 rounded-full bg-[#d4af37] text-[#081408] text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors"
-                        : "px-5 py-2 rounded-full text-[#faf8f5]/80 text-[10px] sm:text-[11px] font-medium tracking-[0.2em] uppercase hover:text-[#d4af37] transition-colors"
-                    }
-                  >
-                    {getChristmasMenu(s)?.branchName ?? s}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
 
         <div className="overflow-y-auto overscroll-contain rounded-sm">
           <ChristmasMenuCard menu={menu} headingId={HEADING_ID} />
